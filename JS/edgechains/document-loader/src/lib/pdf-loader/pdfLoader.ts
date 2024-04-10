@@ -1,15 +1,16 @@
-import { readPdfText } from 'pdf-text-reader';
+import pdf from "pdf-parse/lib/pdf-parse"
 
 export class PdfLoader {
-    pdfPath: string;
-    constructor(pdfPath: string) {
-        this.pdfPath = pdfPath;
+    pdfBuffer : SourceBuffer;
+
+    constructor(pdfBuffer: SourceBuffer) {
+        this.pdfBuffer = pdfBuffer;
     }
 
     async loadPdf() {
         try {
-            const pdfText = await readPdfText({ url: this.pdfPath });
-            return pdfText
+            const pdfdata = await pdf(this.pdfBuffer)
+            return pdfdata.text;
         } catch (error) {
             console.error("Error loading PDF:", error);
             throw error;

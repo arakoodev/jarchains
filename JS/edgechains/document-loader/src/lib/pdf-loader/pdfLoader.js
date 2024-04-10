@@ -1,16 +1,19 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PdfLoader = void 0;
-const pdf_text_reader_1 = require("pdf-text-reader");
+const pdf_parse_1 = __importDefault(require("pdf-parse/lib/pdf-parse"));
 class PdfLoader {
-    pdfPath;
-    constructor(pdfPath) {
-        this.pdfPath = pdfPath;
+    pdfBuffer;
+    constructor(pdfBuffer) {
+        this.pdfBuffer = pdfBuffer;
     }
     async loadPdf() {
         try {
-            const pdfText = await (0, pdf_text_reader_1.readPdfText)({ url: this.pdfPath });
-            return pdfText;
+            const pdfdata = await (0, pdf_parse_1.default)(this.pdfBuffer);
+            return pdfdata.text;
         }
         catch (error) {
             console.error("Error loading PDF:", error);

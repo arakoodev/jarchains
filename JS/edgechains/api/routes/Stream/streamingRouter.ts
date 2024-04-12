@@ -1,8 +1,10 @@
 import { ArakooServer } from "@arakoodev/arakooserver";
 import { Stream } from "@arakoodev/openai"
+import { config } from "dotenv"
+config()
 
 const server = new ArakooServer();
-const straming = new Stream({ OpenApiKey: "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" });
+const straming = new Stream({ OpenApiKey: process.env.OPENAI_API_KEY });
 const decoder = new TextDecoder()
 
 export const StreamingRouter: any = server.createApp();

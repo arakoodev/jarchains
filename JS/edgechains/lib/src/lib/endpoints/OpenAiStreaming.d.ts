@@ -6,7 +6,6 @@ export interface ChatGPTMessage {
 export interface OpenAIStreamPayload {
     model?: string;
     OpenApiKey?: string;
-    message?: [ChatGPTMessage];
     temperature?: number;
     top_p?: number;
     frequency_penalty?: number;
@@ -18,7 +17,6 @@ export interface OpenAIStreamPayload {
 export declare class Stream {
     model?: string;
     OpenApiKey?: string;
-    message?: [ChatGPTMessage];
     temperature?: number;
     top_p?: number;
     frequency_penalty?: number;

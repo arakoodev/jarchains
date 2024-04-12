@@ -14,7 +14,6 @@ export interface ChatGPTMessage {
 export interface OpenAIStreamPayload {
     model?: string;
     OpenApiKey?: string
-    message?: [ChatGPTMessage];
     temperature?: number;
     top_p?: number;
     frequency_penalty?: number;
@@ -27,7 +26,6 @@ export interface OpenAIStreamPayload {
 export class Stream {
     model?: string;
     OpenApiKey?: string;
-    message?: [ChatGPTMessage];
     temperature?: number;
     top_p?: number;
     frequency_penalty?: number;
@@ -38,7 +36,6 @@ export class Stream {
     constructor(options: OpenAIStreamPayload = {}) {
         this.model = options.model || "gpt-3.5-turbo";
         this.OpenApiKey = options.OpenApiKey || process.env.OPENAI_API_KEY || "";
-        this.message = options.message || [{ role: "user", content: "make a http server in c language" }];
         this.temperature = options.temperature || 0.7;
         this.top_p = options.top_p || 1;
         this.frequency_penalty = options.frequency_penalty || 0;
@@ -55,14 +52,19 @@ export class Stream {
             const res = await fetch("https://api.openai.com/v1/chat/completions", {
                 method: "POST",
                 headers: {
-                    Authorization: "Bearer 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",
+                    Authorization: `Bearer ${this.OpenApiKey}`,
                     "content-type": "application/json",
                 },
                 body: JSON.stringify({
-                    model: "gpt-3.5-turbo",
-                    messages: [{ role: "user", content: prompt }],
-                    stream: true,
-                    temperature: 0.7,
+                    "model": this.model,
+                    "messages": [{ role: "user", content: prompt }],
+                    "stream": this.stream,
+                    "temperature": this.temperature,
+                    "top_p": this.top_p,
+                    "n": this.n,
+                    "presence_penalty": this.presence_penalty,
+                    "frequency_penalty": this.frequency_penalty,
+                    "max_tokens": this.max_tokens
                 }),
             })
             const readableStream = new ReadableStream({

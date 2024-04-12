@@ -3,8 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ArakooServer = void 0;
 const node_server_1 = require("@hono/node-server");
 const hono_1 = require("hono");
+const streaming_1 = require("hono/streaming");
 class ArakooServer {
     app = new hono_1.Hono();
+    Stream = streaming_1.stream;
     createApp() {
         return this.app;
     }

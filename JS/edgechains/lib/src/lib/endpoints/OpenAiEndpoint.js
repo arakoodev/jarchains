@@ -108,7 +108,6 @@ export class ChatOpenAi {
                 console.log("Error creating request:", error.message);
             }
         });
-        console.log("----------------------------------");
         return response;
     }
     async testResponseGeneration(prompt) {

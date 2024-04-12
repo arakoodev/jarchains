@@ -129,7 +129,6 @@ export class ChatOpenAi {
                 }
             });
 
-        console.log("----------------------------------")
         return response
     }
 

@@ -1,7 +1,8 @@
 {
     "name": "@arakoodev/openai",
     "version": "0.1.22",
-    "main": "dist/index.js",
+    "main": "index.js",
+    "type": "module",
     "files": [
         "dist",
         "create-edgechains/scripts",
@@ -29,6 +30,7 @@
         "axios-retry": "^4.1.0",
         "cors": "^2.8.5",
         "dotenv": "^16.4.5",
+        "eventsource-parser": "^1.1.2",
         "hono": "^3.9.2",
         "inquirer": "^9.2.12",
         "pdf-parse": "^1.1.1",
@@ -38,7 +40,6 @@
         "typeorm": "^0.3.17"
     },
     "devDependencies": {
-        "@hanazuki/node-jsonnet": "^2.1.0",
         "@types/inquirer": "^9.0.7",
         "@types/jest": "^29.5.8",
         "@types/node": "^20.9.4",

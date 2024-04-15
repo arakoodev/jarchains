@@ -1,9 +1,9 @@
 import pdf from "pdf-parse/lib/pdf-parse"
 
 export class PdfLoader {
-    pdfBuffer : SourceBuffer;
+    pdfBuffer: Buffer;
 
-    constructor(pdfBuffer: SourceBuffer) {
+    constructor(pdfBuffer: Buffer) {
         this.pdfBuffer = pdfBuffer;
     }
 

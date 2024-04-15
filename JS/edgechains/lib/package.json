@@ -1,7 +1,7 @@
 {
     "name": "@arakoodev/openai",
     "version": "0.1.22",
-    "main": "index.js",
+    "main": "dist/index.js",
     "type": "module",
     "files": [
         "dist",
@@ -24,19 +24,16 @@
         "@arakoodev/edgechains.js": "^0.1.22",
         "@arakoodev/jsonnet": "0.1.2",
         "@hono/node-server": "^1.2.0",
-        "@supabase/supabase-js": "^2.41.1",
         "@types/dotenv": "^8.2.0",
         "axios": "^1.6.2",
         "axios-retry": "^4.1.0",
-        "cors": "^2.8.5",
         "dotenv": "^16.4.5",
+        "esbuild": "^0.20.2",
         "eventsource-parser": "^1.1.2",
-        "hono": "^3.9.2",
         "inquirer": "^9.2.12",
-        "pdf-parse": "^1.1.1",
-        "pdf-text-reader": "^4.0.1",
         "prettier": "^3.1.0",
         "retry": "^0.13.1",
+        "tsup-node": "^0.1.0",
         "typeorm": "^0.3.17"
     },
     "devDependencies": {
@@ -50,12 +47,5 @@
         "ts-jest": "^29.1.1",
         "tsup": "^7.2.0",
         "typescript": "^5.0.2"
-    },
-    "jest": {
-        "preset": "ts-jest",
-        "testEnvironment": "node",
-        "setupFiles": [
-            "./src/setupTests.ts"
-        ]
     }
 }

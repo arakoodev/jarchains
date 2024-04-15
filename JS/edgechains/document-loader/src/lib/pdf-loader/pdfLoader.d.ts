@@ -1,5 +1,6 @@
+/// <reference types="node" />
 export declare class PdfLoader {
-    pdfBuffer: SourceBuffer;
-    constructor(pdfBuffer: SourceBuffer);
+    pdfBuffer: Buffer;
+    constructor(pdfBuffer: Buffer);
     loadPdf(): Promise<any>;
 }

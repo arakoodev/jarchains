@@ -22,7 +22,7 @@ type Prompts = Parameters<(typeof inquirer)["prompt"]>[0];
 
 const prompts: Prompts[] = [
     {
-        type: "input",
+        type: "number",
         name: "new_dir_name",
         message: `Enter a name for your project's new directory:`,
         prefix: "\n",

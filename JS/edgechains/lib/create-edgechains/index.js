@@ -12,7 +12,7 @@ function dirname_from_import_meta(import_meta_url) {
 }
 const prompts = [
     {
-        type: "input",
+        type: "number",
         name: "new_dir_name",
         message: `Enter a name for your project's new directory:`,
         prefix: "\n",

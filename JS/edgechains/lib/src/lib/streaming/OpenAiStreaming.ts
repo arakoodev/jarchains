@@ -111,9 +111,10 @@ export class Stream {
                         // stream transformed JSON resposne as SSE
                         const payload = { text: text };
                         // https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#event_stream_format
-                        controller.enqueue(
-                            this.encoder.encode(`data: ${JSON.stringify(payload)}\n\n`)
-                        );
+                        // controller.enqueue(
+                        //     this.encoder.encode(`data: ${JSON.stringify(payload)}\n\n`)
+                        // );
+                        controller.enqueue(payload.text);
                         counter++;
                     } catch (e) {
                         // maybe parse error

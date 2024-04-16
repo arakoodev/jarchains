@@ -79,7 +79,7 @@ export class PostgresClient {
         }
     }
 }
-var PostgresDistanceMetric;
+export var PostgresDistanceMetric;
 (function (PostgresDistanceMetric) {
     PostgresDistanceMetric["COSINE"] = "COSINE";
     PostgresDistanceMetric["IP"] = "IP";

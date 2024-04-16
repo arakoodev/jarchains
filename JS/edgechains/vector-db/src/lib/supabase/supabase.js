@@ -59,25 +59,6 @@ class Supabase {
             });
         });
     }
-    //     /**
-    //   * Insert Recursively data into a vector database using a Supabase client.
-    //   * @param relation The name of the relation (table) to insert data into.
-    //   * @param content The content to insert.
-    //   * @param embedding The embedding data to insert.
-    //   * @returns The inserted data if successful.
-    //   * @throws Error if insertion fails.
-    //   */
-    //     async RecursiveInsertVectorData({ client, tableName, args }: { client: SupabaseClient, tableName: string, args: ArgsObject }): Promise<any> {
-    //         try {
-    //             // Insert data into the specified relation
-    //             await client.from(tableName).insert(args)
-    //             console.log("args", args)
-    //             return "Successfully data inserted into vector database";
-    //         } catch (error) {
-    //             console.error("Error inserting data into vector database:", error);
-    //             throw error;
-    //         }
-    //     }
     /**
      * fetch data from vector database using a Supabase client
      * @param client  - The Supabase client instance.

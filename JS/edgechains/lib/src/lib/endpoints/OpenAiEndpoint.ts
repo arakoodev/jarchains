@@ -1,6 +1,5 @@
 import axios from "axios";
 import { config } from "dotenv";
-import { SimpleConsoleLogger } from "typeorm";
 config();
 const openAI_url = "https://api.openai.com/v1/chat/completions"
 

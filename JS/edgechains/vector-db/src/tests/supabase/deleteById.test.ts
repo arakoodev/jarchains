@@ -15,7 +15,7 @@ jest.mock("../../lib/supabase/supabase.js", () => {
             deleteById: jest.fn().mockImplementation(async ({ client, tableName, id }) => {
                 // Mock response for a successful deletion
                 const mockResponse = {
-                    status: 200, // Assuming successful deletion returns status code 200
+                    status: 200, 
                     message: "Deleted successfully", // Message indicating successful deletion
                 };
 

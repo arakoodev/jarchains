@@ -15,5 +15,6 @@
     "noImplicitAny": false,
     "moduleResolution": "NodeNext",
     "declaration": true
-  }
+  },
+  "exclude": ["node_modules", "dist", "./**/*.test.ts"]
 }

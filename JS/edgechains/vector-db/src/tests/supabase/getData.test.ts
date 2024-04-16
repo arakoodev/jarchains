@@ -1,5 +1,4 @@
 import { Supabase } from "../../lib/supabase/supabase.js";
-
 const MOCK_SUPABASE_API_KEY = 'mock-api-key';
 const MOCK_SUPABASE_URL = 'https://mock-supabase.co';
 

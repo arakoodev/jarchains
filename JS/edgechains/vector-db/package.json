@@ -19,7 +19,6 @@
   "license": "ISC",
   "types": "./index.d.ts",
   "dependencies": {
-    "@arakoodev/openai": "file:../lib",
     "@supabase/supabase-js": "^2.42.3",
     "dotenv": "^16.4.5",
     "esbuild": "^0.20.2",

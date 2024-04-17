@@ -21,9 +21,7 @@ StreamingRouter.get('/:question', async (c) => {
                 if (done) {
                     break;
                 }
-                const chunkValue = decoder.decode(value);
-                const val = JSON.parse(chunkValue.replace(/^data:/, "")).text ?? "";
-                var uint8array = new TextEncoder().encode(val);
+                var uint8array = new TextEncoder().encode(value);
                 await stream.write(uint8array);
             }
         });

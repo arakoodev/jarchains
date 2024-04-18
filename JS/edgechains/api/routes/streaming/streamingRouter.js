@@ -5,7 +5,6 @@ import TokenBucket from "../../utils/tokenBucket.js";
 config();
 const server = new ArakooServer();
 const straming = new Stream({ OpenApiKey: process.env.OPENAI_API_KEY });
-const decoder = new TextDecoder();
 const bucket = new TokenBucket(4, 1, 1);
 export const StreamingRouter = server.createApp();
 StreamingRouter.get('/:question', async (c) => {
@@ -21,8 +20,7 @@ StreamingRouter.get('/:question', async (c) => {
                 if (done) {
                     break;
                 }
-                var uint8array = new TextEncoder().encode(value);
-                await stream.write(uint8array);
+                await stream.write(value);
             }
         });
     }

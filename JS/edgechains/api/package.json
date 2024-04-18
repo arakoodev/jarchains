@@ -19,6 +19,7 @@
     "@arakoodev/arakooserver": "file:../arakooserver",
     "@arakoodev/document-loader": "file:../document-loader",
     "@arakoodev/edgechains.js": "file:../lib",
+    "@arakoodev/middleware": "file:../middleware",
     "@arakoodev/openai": "file:../lib",
     "@arakoodev/splitter": "file:../splitter",
     "@arakoodev/vector-db": "file:../vector-db",
@@ -41,6 +42,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.13",
     "@babel/preset-env": "^7.12.13",
+    "@types/cors": "^2.8.17",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.12.7",
     "@types/supertest": "^6.0.2",

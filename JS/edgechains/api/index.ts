@@ -5,11 +5,14 @@ import os from "node:os";
 import { StreamingRouter } from "./routes/streaming/streamingRouter.js";
 import { UploadPdfRouter } from "./routes/uploadPdf/uploadPdf.js"
 import { uploadToSupabaseRouter } from "./routes/uploadToSupabase/uploadToSupabase.js";
+import { cors } from "hono/cors"
+
 const totalCPUs = os.cpus().length;
 const server = new ArakooServer();
 
 const app: any = server.createApp();
 
+app.use(cors({ origin: "*" }))
 if (cluster.isPrimary) {
 
   for (let i = 0; i < totalCPUs; i++) {
@@ -25,12 +28,12 @@ if (cluster.isPrimary) {
   app.get("/", (c) => {
     return c.text("Hello, from Arakoo");
   });
-  app.route("/v1/uploadPdf", UploadPdfRouter);
-  app.route("/v1/vectorUpload", uploadToSupabaseRouter);
-  app.route('/v1/getStreamData', StreamingRouter)
+  app.route("/api/v1/uploadPdf", UploadPdfRouter);
+  app.route("/api/v1/vectorUpload", uploadToSupabaseRouter);
+  app.route('/api/v1/getStreamData', StreamingRouter)
 
   server.listen(5000)
-  
+
 }
 
 export default app;

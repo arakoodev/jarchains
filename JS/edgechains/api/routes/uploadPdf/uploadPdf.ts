@@ -17,7 +17,6 @@ UploadPdfRouter.post("/", async (c) => {
         }
         const body = await c.req.parseBody()
         const text = body['file']
-        console.log({text})
         // @ts-ignore
         const buffer = await text?.arrayBuffer();
         const loader = new PdfLoader(buffer);

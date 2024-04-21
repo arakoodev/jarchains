@@ -1,0 +1,21 @@
+{
+  "name": "hono-openai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@arakoodev/jsonnet": "file:../../../jsonnet/",
+    "@hono/node-server": "^1.11.0",
+    "hono": "^3.9"
+  },
+  "type": "module",
+  "devDependencies": {
+    "esbuild": "^0.20.2"
+  }
+}

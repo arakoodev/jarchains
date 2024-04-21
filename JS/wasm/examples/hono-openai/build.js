@@ -1,22 +1,9 @@
 import { build } from "esbuild";
-import fs from "fs";
 let runtime = process.argv[2];
 
-// let jsonnetLoadPlugin = {
-//     name: "jsonnet-load",
-//     setup(build) {
-//         build.onLoad({ filter: /\.jsonnet$/ }, async (args) => {
-//             let code = await fs.promises.readFile(args.path, "utf-8");
-//             return {
-//                 contents: code,
-//                 loader: "text",
-//             };
-//         })
-//     }
-// }
 
 build({
-    entryPoints: ["src/index.js", "src/example.jsonnet"],
+    entryPoints: ["src/index.js", "src/prompts/quote.jsonnet","src/prompts/config.jsonnet"],
     // entryPoints: ["src/index.js"],
     bundle: true,
     // minify: true,

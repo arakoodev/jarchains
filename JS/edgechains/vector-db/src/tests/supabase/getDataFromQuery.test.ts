@@ -11,7 +11,7 @@ jest.mock("../../lib/supabase/supabase.js", () => {
                 // Mock client methods
                 from: jest.fn().mockReturnThis(),
             })),
-            getDataFromQuery: jest.fn().mockImplementation(async ({ client, functionNameToCall, args }) => {
+            getDataFromQuery: jest.fn().mockImplementation(async () => {
                 // Mock response data
                 const responseData = { id: 1, content: "Hello, world!" };;
 

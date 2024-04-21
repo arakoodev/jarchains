@@ -7,6 +7,13 @@ interface InsertVectorDataArgs {
     tableName: string;
     [key: string]: any;
 }
+interface InsertBulkVectorDataArgs {
+    client: SupabaseClient;
+    tableName: string;
+    data: Array<{
+        [key: string]: any;
+    }>;
+}
 interface GetDataFromQueryArgs {
     client: SupabaseClient;
     functionNameToCall: string;
@@ -20,13 +27,21 @@ export declare class Supabase {
     /**
   * Insert data into a vector database using a Supabase client.
   * @param client The Supabase client instance.
-  * @param relation The name of the relation (table) to insert data into.
+  * @param relation The name of the relation (tableName) to insert data into.
   * @param content The content to insert.
-  * @param embedding The embedding data to insert.
   * @returns The inserted data if successful.
   * @throws Error if insertion fails.
   */
-    insertVectorData({ client, tableName, ...args }: InsertVectorDataArgs): Promise<any>;
+    insertVectorData({ client, tableName, ...args }: InsertVectorDataArgs | InsertBulkVectorDataArgs): Promise<any>;
+    /**
+  * Insert Bulk data into a vector database using a Supabase client.
+  * @param client The Supabase client instance.
+  * @param relation The name of the relation (table) to insert data into.
+  * @param args The array of objects containing the data to be inserted.
+  * @returns The inserted data if successful.
+  * @throws Error if insertion fails.
+  */
+    insertBulkVectorData({ client, tableName, data }: InsertBulkVectorDataArgs): Promise<any>;
     /**
      * fetch data from vector database using a Supabase client
      * @param client  - The Supabase client instance.

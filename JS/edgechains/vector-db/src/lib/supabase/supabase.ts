@@ -13,6 +13,12 @@ interface InsertVectorDataArgs {
     [key: string]: any; // Allow dynamic properties
 }
 
+interface InsertBulkVectorDataArgs {
+    client: SupabaseClient;
+    tableName: string;
+    data: Array<{ [key: string]: any }>;
+}
+
 interface GetDataFromQueryArgs {
     client: SupabaseClient;
     functionNameToCall: string;
@@ -39,13 +45,12 @@ export class Supabase {
     /**
   * Insert data into a vector database using a Supabase client.
   * @param client The Supabase client instance.
-  * @param relation The name of the relation (table) to insert data into.
+  * @param relation The name of the relation (tableName) to insert data into.
   * @param content The content to insert.
-  * @param embedding The embedding data to insert.
   * @returns The inserted data if successful.
   * @throws Error if insertion fails.
   */
-    async insertVectorData({ client, tableName, ...args }: InsertVectorDataArgs): Promise<any> {
+    async insertVectorData({ client, tableName, ...args }: InsertVectorDataArgs | InsertBulkVectorDataArgs): Promise<any> {
 
         return new Promise((resolve, reject) => {
             const operation = retry.operation({
@@ -61,7 +66,45 @@ export class Supabase {
                     const res = await client.from(tableName).insert(args)
                     if (res.error?.message) {
                         if (operation.retry(new Error)) { return; }
-                        reject(new Error(`Failed to insert ${JSON.stringify(args)} with error message "${res.error.message}"`));
+                        reject(new Error(`Failed to insert ${tableName} with error message "${res.error.message}"`));
+                    }
+                    else {
+                        resolve(res)
+                    }
+
+                } catch (error: any) {
+                    if (operation.retry(error)) { return; }
+                    reject(error);
+                }
+            })
+        })
+    }
+
+    /**
+  * Insert Bulk data into a vector database using a Supabase client.
+  * @param client The Supabase client instance.
+  * @param relation The name of the relation (table) to insert data into.
+  * @param args The array of objects containing the data to be inserted.
+  * @returns The inserted data if successful.
+  * @throws Error if insertion fails.
+  */
+    async insertBulkVectorData({ client, tableName, data }: InsertBulkVectorDataArgs): Promise<any> {
+
+        return new Promise((resolve, reject) => {
+            const operation = retry.operation({
+                retries: 5,
+                factor: 3,
+                minTimeout: 1 * 1000,
+                maxTimeout: 60 * 1000,
+                randomize: true,
+            })
+
+            operation.attempt(async (currentAttempt) => {
+                try {
+                    const res = await client.from(tableName).insert(data)
+                    if (res.error?.message) {
+                        if (operation.retry(new Error)) { return; }
+                        reject(new Error(`Failed to insert ${tableName} with error message "${res.error.message}"`));
                     }
                     else {
                         resolve(res)

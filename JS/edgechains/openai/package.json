@@ -1,14 +1,10 @@
 {
-    "name": "@arakoodev/create-edgechains",
+    "name": "@arakoodev/openai",
     "version": "0.1.22",
     "main": "dist/index.js",
     "type": "module",
     "files": [
-        "dist",
-        "create-edgechains/scripts",
-        "create-edgechains/dist",
-        "create-edgechains/__common",
-        "node_modules/"
+        "dist"
     ],
     "jest": {
         "setupFiles": [
@@ -27,24 +23,18 @@
     },
     "dependencies": {
         "@arakoodev/edgechains.js": "^0.1.22",
-        "@arakoodev/jsonnet": "^0.1.2",
         "@babel/core": "^7.24.4",
         "@babel/preset-env": "^7.24.4",
-        "@hono/node-server": "^1.2.0",
         "@types/dotenv": "^8.2.0",
         "axios": "^1.6.2",
         "axios-retry": "^4.1.0",
         "dotenv": "^16.4.5",
         "esbuild": "^0.20.2",
         "eventsource-parser": "^1.1.2",
-        "inquirer": "^9.2.12",
-        "milsymbol": "^2.2.0",
-        "msw": "^2.2.13",
         "node-fetch": "^3.3.2",
         "prettier": "^3.1.0",
         "regenerator-runtime": "^0.14.1",
-        "retry": "^0.13.1",
-        "typeorm": "^0.3.17"
+        "retry": "^0.13.1"
     },
     "devDependencies": {
         "@types/inquirer": "^9.0.7",

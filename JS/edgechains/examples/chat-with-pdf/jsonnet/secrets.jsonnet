@@ -1,9 +1,9 @@
-local SUPABASE_API_KEY = "your supabase api key here";
+local SUPABASE_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjeGpjdmVkYXh2a2V4amh2d2lrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTExMjYwOTYsImV4cCI6MjAyNjcwMjA5Nn0.X6pf7zCrCa-FV7MH0E_BE-Z0H6iG8YQmj0dFa2nNcVM";
 
 
-local OPENAI_API_KEY = "your openai api key here";
+local OPENAI_API_KEY = "sk-proj-gqUmLa39XeSQPldP5t2qT3BlbkFJMIQdne2UEGWZj3R3ptKB";
 
-local SUPABASE_URL = "your supabase url here";
+local SUPABASE_URL = "https://hcxjcvedaxvkexjhvwik.supabase.co";
 
 {
     "supabase_api_key":SUPABASE_API_KEY,

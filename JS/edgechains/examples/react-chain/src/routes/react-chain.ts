@@ -25,6 +25,7 @@ ReactChainRouter.get("/", async (c:any) => {
         jsonnet.javascriptCallback("getExtractedSummary", getExtractedSummary);
         jsonnet.javascriptCallback("openAICall", openAICall);
         let response =jsonnet.javascriptCallback("callWikipediaApi", callWikipediaApi).evaluateFile(path.join(__dirname, "../../../jsonnet/react-chain.jsonnet"))
+
         return c.json(response)
 
     } catch (error) {

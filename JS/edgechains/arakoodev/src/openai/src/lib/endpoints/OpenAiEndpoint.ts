@@ -9,6 +9,7 @@ interface ChatOpenAiOptions {
   orgId?: string;
   model?: string;
   role?: string;
+  max_tokens: number;
   temperature?: number;
 }
 
@@ -18,11 +19,13 @@ export class ChatOpenAi {
   orgId: string;
   model: string;
   role: string;
+  max_tokens: number;
   temperature: number;
 
-  constructor(options: ChatOpenAiOptions = {}) {
+  constructor(options: ChatOpenAiOptions) {
     this.url = options.url || openAI_url;
-    this.openAIApiKey = options.openAIApiKey || process.env.OPENAI_API_KEY!; // and check it's there
+    this.max_tokens = options.max_tokens || 256;
+    this.openAIApiKey = options.openAIApiKey || process.env.OPENAI_API_KEY!; 
     this.orgId = options.orgId || "";
     this.model = options.model || "gpt-3.5-turbo";
     this.role = options.role || "user";
@@ -41,6 +44,7 @@ export class ChatOpenAi {
               content: prompt,
             },
           ],
+          max_tokens: this.max_tokens,
           temperature: this.temperature,
         },
         {

@@ -2,7 +2,7 @@
   "compilerOptions": {
       "types": ["dotenv/config","jest", "node"],
       "target": "ES2022",
-      "module": "NodeNext",
+      "module": "CommonJS",
       "esModuleInterop": true,
       "forceConsistentCasingInFileNames": true,
       "strict": true,
@@ -10,7 +10,7 @@
       "jsx": "react-jsx",
       "jsxImportSource": "hono/jsx",
       "noImplicitAny": false,
-      "moduleResolution": "NodeNext",
+      "moduleResolution": "Node",
       "declaration": true,
       "outDir": "./dist",
       "rootDir": "./src",

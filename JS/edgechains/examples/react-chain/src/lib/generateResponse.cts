@@ -1,7 +1,7 @@
 const path = require("path");
 const { ChatOpenAi } = require("arakoodev/openai");
 
-const Jsonnet = require("@arakoodev/jsonnet/pkg/index.js");
+const Jsonnet = require("@arakoodev/jsonnet");
 const jsonnet = new Jsonnet();
 
 const secretsPath = path.join(__dirname, "../../jsonnet/secrets.jsonnet");

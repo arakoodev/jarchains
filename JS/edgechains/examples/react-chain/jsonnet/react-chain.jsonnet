@@ -108,6 +108,7 @@ local promptTemplate = |||
                             Thought 3: Leonid Levin is a mathematician and computer scientist. So Pavel Urysohn
                             and Leonid Levin have the same type of work.
                             Action 3: Finish[yes]
+                            
                             --ALL THE OBSERVATIONS WILL BE PROVIDED BY THE USER, YOU DON't HAVE TO PROVIDE ANY OBSERVATION--
                             Question: {}
                         |||;
@@ -183,12 +184,11 @@ local getFinalOutput(acc) =
 
 local main() = 
         std.foldl(function(acc, i)
-            local content = getOpenAiResponse(acc);
-            local actionNumber = i;
-                
                    if arakoo.includes(getFinalOutput(acc), "Finish[") then
                         acc
                    else
+                        local content = getOpenAiResponse(acc);
+                        local actionNumber = i;
                         if(!std.isEmpty(content)) then
                             local action = extractAction(content, actionNumber);
                             local thought = extractThought(content, actionNumber);

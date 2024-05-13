@@ -1,7 +1,7 @@
 
 import { ArakooServer } from "arakoodev/arakooserver";
 //@ts-ignore
-import Jsonnet from "@arakoodev/jsonnet/pkg/index.js";
+import Jsonnet from "@arakoodev/jsonnet";
 import { fileURLToPath } from "url"
 import path from "path";
 //@ts-ignore

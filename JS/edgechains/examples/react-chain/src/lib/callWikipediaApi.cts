@@ -1,4 +1,3 @@
-
 const axios = require('axios');
 
 function findMatch(text: string, searchString: string): Boolean {

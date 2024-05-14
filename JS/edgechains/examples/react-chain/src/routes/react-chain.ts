@@ -32,4 +32,3 @@ ReactChainRouter.get("/", async (c:any) => {
         return c.json({ response: "Any error occured while finding the answer. Please try again!" })
     }
 })
-

@@ -12,7 +12,7 @@ export function jsonnet_evaluate_snippet(
     f: number
 ): void;
 export function jsonnet_evaluate_file(a: number, b: number, c: number, d: number): void;
-export function ext_string(a: number, b: number, c: number, d: number, e: number): void;
+export function jsonnet_ext_string(a: number, b: number, c: number, d: number, e: number): void;
 export function get_func(a: number, b: number): number;
 export function set_func(a: number, b: number, c: number): void;
 export function register_native_callback(a: number, b: number, c: number, d: number): void;

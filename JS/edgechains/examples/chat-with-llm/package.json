@@ -1,5 +1,5 @@
 {
-  "name": "chat-with-youtube-video",
+  "name": "ownChatGpt",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -20,3 +20,4 @@
     "@types/node": "^20.12.12"
   }
 }
+

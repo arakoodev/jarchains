@@ -1,8 +1,8 @@
-## Video 
+## Video
+
     ```
     https://youtu.be/4gouiNUuBr4
     ```
-
 
 ## Installation
 
@@ -14,10 +14,10 @@
 
 ## Configuration
 
-1  Add OpenAiApi key in secrets.jsonnet
-    ```bash
+1 Add OpenAiApi key in secrets.jsonnet
+`bash
     local OPENAI_API_KEY = "sk-****";
-    ```
+    `
 
 ## Usage
 
@@ -29,9 +29,7 @@
 
 2. Hit the `GET` endpoint.
 
-
     ```bash
-    
-   http://localhost:3000/?pageUrl=https://en.wikipedia.org/wiki/Association_football
-    ```
 
+    http://localhost:3000/?pageUrl=https://en.wikipedia.org/wiki/Association_football
+    ```

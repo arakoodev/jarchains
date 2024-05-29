@@ -7,6 +7,11 @@ let jsonnet = new Jsonnet();
 
 const app = new Hono();
 const env = {};
+
+app.get("/hello", (c) => {
+    return c.text("Hello World!");
+});
+
 app.get("/", (c) => {
     const code = `
   local username = std.extVar('name');
@@ -24,7 +29,11 @@ app.get("/", (c) => {
 
 app.get("/file", (c) => {
     try {
-        let result = jsonnet.extString("extName", "Mohan").evaluateFile("example.jsonnet");
+        let result = jsonnet
+            .extString("extName", "Mohan")
+            .evaluateFile(
+                "/home/afshan/EdgeChains/JS/wasm/examples/ec-wasmjs-hono/src/example.jsonnet"
+            );
         return c.json(JSON.parse(result));
     } catch (error) {
         console.log("Error occured");

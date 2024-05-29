@@ -26,7 +26,7 @@ export function jsonnet_evaluate_file(vm: number, filename: string): string;
  * @param {string} key
  * @param {string} value
  */
-export function ext_string(vm: number, key: string, value: string): void;
+export function jsonnet_ext_string(vm: number, key: string, value: string): void;
 /**
  * @param {string} name
  * @returns {Function | undefined}

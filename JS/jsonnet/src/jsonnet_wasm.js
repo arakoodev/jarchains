@@ -267,12 +267,12 @@ module.exports.jsonnet_evaluate_file = function (vm, filename) {
  * @param {string} key
  * @param {string} value
  */
-module.exports.ext_string = function (vm, key, value) {
+module.exports.jsonnet_ext_string = function (vm, key, value) {
     const ptr0 = passStringToWasm0(key, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
     const len0 = WASM_VECTOR_LEN;
     const ptr1 = passStringToWasm0(value, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
     const len1 = WASM_VECTOR_LEN;
-    wasm.ext_string(vm, ptr0, len0, ptr1, len1);
+    wasm.jsonnet_ext_string(vm, ptr0, len0, ptr1, len1);
 };
 
 /**

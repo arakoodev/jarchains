@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const { OpenAI } = require("arakoodev/openai");
+const { OpenAI } = require("@arakoodev/edgechains.js/openai");
 const path = require('path');
 const Jsonnet = require("@arakoodev/jsonnet");
 const jsonnet = new Jsonnet();

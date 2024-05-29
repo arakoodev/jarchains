@@ -1,6 +1,6 @@
 ## Video 
     ```
-    https://drive.google.com/file/d/1y0tGZx9HnjZpWlMmJW-6Yt1fW9lXpxFD/view
+    https://youtu.be/fq3BpdduO2g
     ```
 
 # Chat with LLM Example

@@ -1,5 +1,5 @@
 
-import { ArakooServer } from "arakoodev/arakooserver";
+import { ArakooServer } from "@arakoodev/edgechains.js/arakooserver";
 import Jsonnet from "@arakoodev/jsonnet";
 //@ts-ignore
 import createClient from 'sync-rpc';

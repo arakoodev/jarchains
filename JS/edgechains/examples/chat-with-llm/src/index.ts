@@ -1,4 +1,4 @@
-
+//@ts-ignore
 import { ArakooServer } from "@arakoodev/edgechains.js/arakooserver";
 import Jsonnet from "@arakoodev/jsonnet";
 //@ts-ignore

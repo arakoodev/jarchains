@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/htmx.org@1.7.0"></script>
+    <script src="https://unpkg.com/@tabler/icons@1.40.0/icons-react.min.js"></script>
+</head>
+
+<body class="bg-gray-600">
+    <div id="chat-app" class="max-w-3xl mx-auto mt-48">
+
+        <!-- Chat Input -->
+        <div class="mt-4 sm:mt-8 bottom-[56px] left-0">
+            <div class="relative">
+                <!-- <textarea id="chat-input"
+                    class="min-h-[44px] rounded-lg pl-4 pr-12 py-2 w-full focus:outline-none focus:ring-1 focus:ring-neutral-300 border-2 border-neutral-200"
+                    style="resize: none;" placeholder="Type a message..." rows="1" oninput="resizeTextarea(this)"
+                    onkeydown="handleKeyDown(event)"></textarea> -->
+                <input id="resumeInput" type="file" name="q" hx-get="/trigger_delay"
+                    hx-trigger="keyup changed delay:500ms" hx-target="#search-results" placeholder="Search...">
+                <button
+                    class="text-sm sm:text-base text-neutral-900 border-2 border-gray-300 font-semibold rounded-lg px-4 py-2 bg-gray-200 hover:bg-neutral-300 focus:outline-none focus:ring-1 focus:ring-neutral-300"
+                    onclick="handleResume()">
+                    Upload
+                </button>
+            </div>
+        </div>
+
+        <span class="mt-4">Result</span>
+        <!-- Chat Messages and Loader -->
+        <div class="flex flex-col rounded-lg px-2 sm:p-4 sm:border border-neutral-300" id="chat-messages">
+            <!-- Chat Messages will be dynamically injected here -->
+        </div>
+    </div>
+
+    <script>
+        let loading = false;
+        async function handleResume() {
+            const resumeInput = document.getElementById('resumeInput');
+            const chatMessages = document.getElementById('chat-messages');
+
+            const file = resumeInput.files[0];
+            if (file) {
+                chatMessages.innerHTML = 'Uploading...';
+
+                var formData = new FormData();
+                formData.append("file", file);
+
+                try {
+                    const response = await fetch('http://localhost:3000/upload-resume', {
+                        method: 'POST',
+                        body: formData, // Send the FormData object directly
+                    })
+
+                    const data = JSON.parse(await response.json())
+                    console.log(data)
+                    chatMessages.innerHTML = `
+                                            <div class="p-6">PERCENTAGE OUT OF 100 - ${data.percent}<div/>
+                                            <div class="p-6">IMPROVEMENTS YOU CAN DO - ${data.improvementDesc}<div/>  `
+                } catch (error) {
+                    console.error('Error:', error);
+                    chatMessages.innerHTML = 'An error occurred. Please try again.';
+                }
+
+
+
+            } else {
+                chatMessages.innerHTML = 'No file selected.';
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

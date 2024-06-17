@@ -1,21 +1,24 @@
-## Video
-
-    ```
-    https://youtu.be/RTARGcRW_0I
-    ```
 
 # Project Name
 
-This is a Language Translate app
+This is Research Agent App
 
 ## Backend
 
 ### Configuration
 
-1 Add OpenAiApi key in secrets.jsonnet
+1 Add OpenAiApi key and Bing api key in secrets.jsonnet
 
     ```
-     local OPENAI_API_KEY = "sk-****";
+     local OPENAI_API_KEY = "sk-proj-***";
+     local BING_API_KEY = "9be1*****";
+    ```
+
+
+## Installation
+
+    ```bash
+    npm install
     ```
 
 ## Usage
@@ -23,8 +26,7 @@ This is a Language Translate app
 1. Start the server:
 
     ```bash
-    cd backend
-    npm run start
+    npm run dev
     ```
 
 2. Hit this following endpoint

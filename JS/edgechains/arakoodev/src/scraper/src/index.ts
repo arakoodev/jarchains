@@ -1,1 +1,2 @@
-export { WebScraper } from "./lib/webScraper";
+export { Cheerio } from "./lib/cheerio";
+export { PlayWriteScrapper } from "./lib/playwright";

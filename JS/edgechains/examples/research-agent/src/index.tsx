@@ -5,7 +5,6 @@ import Home from "./pages/Home.js";
 import Jsonnet from "@arakoodev/jsonnet";
 import fileURLToPath from "file-uri-to-path";
 import path from "path";
-import { response } from "express";
 
 const server = new ArakooServer();
 const jsonnet = new Jsonnet();

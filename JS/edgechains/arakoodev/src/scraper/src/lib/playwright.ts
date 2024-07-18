@@ -23,7 +23,7 @@ export class Playwright {
         - Current page title: ${await page.evaluate('document.title')}.
         - Overview of the site in HTML format:
         \\\
-        ${removeBlankTags((await parseSite(page))).slice(0, 13000)}
+        ${removeBlankTags((await parseSite(page))).slice(0, 25000)}
         \\\
 
         Key Points:
@@ -84,7 +84,7 @@ export class Playwright {
 
             ${task}
 
-            Extract the key actions from this task and return them as an array of strings. Each action should be a separate string in the array. Make each action verbose and detailed. If the task description contains syntax errors or you think a command can be improved for better clarity and effectiveness, please make the necessary corrections and improvements. For example:
+            Extract the key actions from this task and return them as an array of strings. Each action should be a separate string in the array. If the task description contains syntax errors or you think a command can be improved for better clarity and effectiveness, please make the necessary corrections and improvements. For example:
 
             Input:
             "Go to Hacker News and click on the first link. Then give me all the text of this page."
@@ -94,7 +94,7 @@ export class Playwright {
            [
            "Navigate to the Hacker News website by entering the URL 'https://news.ycombinator.com/' in the browser", 
             "Identify and click on the first link displayed on the Hacker News homepage",  
-            "Extract and return all the text content from the page that opens after clicking the first link"
+            "Extract and return all the text content from the page"
             ]
             Ensure that each action is specific, clear, and comprehensive to facilitate precise implementation.
             \`\`\`
@@ -102,7 +102,6 @@ export class Playwright {
     }
 
     async #openAIRequest({ chatApi, prompt }: { chatApi: string, prompt: string }) {
-        ;
         return new Promise((resolve, reject) => {
             const operation = retry.operation({
                 retries: 5,
@@ -130,7 +129,6 @@ export class Playwright {
                         }
                     )
                     .then((response) => {
-                        console.log(response.data.choices[0].message.content)
                         resolve(response.data.choices[0].message.content);
                     })
                     .catch((error) => {
@@ -160,12 +158,12 @@ export class Playwright {
         * @param headless - Run in headless mode default is false
         * @returns Playwright code example - page.goto('https://www.google.com')
     **/
-    async call({ chatApi, task, url, headless }: { chatApi: string, task: string, url?: string, headless?: boolean }) {
+    async call({ chatApi, task, url, headless = true }: { chatApi: string, task: string, url?: string, headless?: boolean }) {
 
         const AsyncFunction = async function () { }.constructor;
 
         const browser = await chromium.launch({
-            headless: headless || true
+            headless: headless
         });
 
         const page = await browser.newPage();
@@ -174,28 +172,33 @@ export class Playwright {
         const taskPrompt = this.#createPromptForTaskArr(task);
         const taskArr: any = parseArr(await this.#openAIRequest({ chatApi, prompt: taskPrompt }))
 
+        let response: string = "";
+
         for (let i = 0; i < taskArr.length; i++) {
-            const element = taskArr[i];
-            console.log(await page.evaluate('location.href'))
-            const prompt = await this.#createPrompt({ task: element, page });
-            let res: any = preprocessJsonInput(await this.#openAIRequest({ chatApi, prompt }));
-            console.log(res)
-            const dependencies = [
-                { param: "page", value: page },
-            ];
+            if (!response) {
+                const element = taskArr[i];
+                const prompt = await this.#createPrompt({ task: element, page });
+                let res: any = preprocessJsonInput(await this.#openAIRequest({ chatApi, prompt }));
+                const dependencies = [
+                    { param: "page", value: page },
+                ];
 
-            const func = AsyncFunction(...dependencies.map((d) => d.param), res);
-            const args = dependencies.map((d) => d.value);
+                const func = AsyncFunction(...dependencies.map((d) => d.param), res);
+                const args = dependencies.map((d) => d.value);
 
-            try {
-                const res = await func(...args)
-                if (i >= taskArr.length - 1) {
-                    return res
+                try {
+                    const res = await func(...args);
+                    if (res) {
+                        response = res;
+                    }
+
+                } catch (error: any) {
+                    console.log(error);
                 }
-
-            } catch (error: any) {
-                console.log(error);
             }
         }
+
+        await browser.close();
+        return response;
     }
 }

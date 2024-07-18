@@ -12,6 +12,10 @@ const app = server.createApp();
 
 const __dirname = fileURLToPath(import.meta.url);
 
+const secretsPath = path.join(__dirname, "../../jsonnet/secrets.jsonnet");
+const key = JSON.parse(jsonnet.evaluateFile(secretsPath)).bing_api_key;
+const openAIkey = JSON.parse(jsonnet.evaluateFile(secretsPath)).openai_api_key;
+
 const openAICall = createClient(path.join(__dirname, "../lib/generateResponse.cjs"));
 const bingWebSearch = createClient(path.join(__dirname, "../lib/bingWebSearch.cjs"));
 const WebScraper = createClient(path.join(__dirname, "../lib/scrapPageContent.cjs"));
@@ -24,6 +28,8 @@ app.post("/research", async (c: any) => {
     console.time("Time taken");
     const { query } = await c.req.parseBody();
     jsonnet.extString("query", query);
+    jsonnet.extString("BingKey", key);
+    jsonnet.extString("openAIkey", openAIkey);
     jsonnet.javascriptCallback("openAICall", openAICall);
     jsonnet.javascriptCallback("bingWebSearch", bingWebSearch);
     jsonnet.javascriptCallback("webScraper", WebScraper);

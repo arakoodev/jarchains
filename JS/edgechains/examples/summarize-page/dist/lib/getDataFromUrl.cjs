@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const scraper_1 = require("@arakoodev/edgechains.js/scraper");
 const scraper = new scraper_1.Playwright();
-async function getPageContent({ pageUrl, openai }) {
+async function getPageContent({ task, openai }) {
     try {
-        return await scraper.call({ chatApi: openai, task: `go to ${pageUrl} and scrap the hole page text`, headless: false });
+        return await scraper.call({ chatApi: openai, task, headless: false });
     }
     catch (error) {
         console.log(error);

@@ -1,18 +1,10 @@
 import axios from "axios";
-import { ChatModel, role } from "../../types/index";
 import { retry } from "@lifeomic/attempt"
 const url = "https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent";
 
 interface GeminiAIConstructionOptions {
     apiKey?: string;
 }
-
-interface messageOption {
-    role: role;
-    content: string;
-    name?: string;
-}
-[];
 
 type SafetyRating = {
     category: "HARM_CATEGORY_SEXUALLY_EXPLICIT" | "HARM_CATEGORY_HATE_SPEECH" | "HARM_CATEGORY_HARASSMENT" | "HARM_CATEGORY_DANGEROUS_CONTENT";
@@ -51,7 +43,7 @@ type responseMimeType = "text/plain" | "application/json"
 
 
 interface GeminiAIChatOptions {
-    model?: ChatModel;
+    model?: string;
     max_output_tokens?: number;
     temperature?: number;
     prompt: string;

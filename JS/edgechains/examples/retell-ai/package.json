@@ -1,0 +1,54 @@
+{
+  "name": "htmx-webpack-demo",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack --watch",
+    "start": "node server/index.js"
+  },
+  "dependencies": {
+    "@arakoodev/edgechains.js": "file:../../arakoodev",
+    "@hono/node-server": "^1.13.4",
+    "browserify-zlib": "^0.2.0",
+    "buffer": "^6.0.3",
+    "crypto": "^1.0.1",
+    "crypto-browserify": "^3.12.1",
+    "htmx.org": "^1.9.10",
+    "hyperscript": "^2.0.2",
+    "hyperscript.org": "^0.9.13",
+    "process": "^0.11.10",
+    "retell-client-js-sdk": "^2.0.4",
+    "retell-sdk": "^4.8.0",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "util": "^0.12.5",
+    "vm-browserify": "^1.1.2",
+    "webpack-node-externals": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.6",
+    "@babel/plugin-transform-runtime": "^7.25.9",
+    "@babel/preset-env": "^7.23.6",
+    "assert": "^2.1.0",
+    "babel-loader": "^9.2.1",
+    "node-polyfill-webpack-plugin": "^4.0.0",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "url": "^0.11.4",
+    "webpack": "^5.96.1",
+    "webpack-cli": "^5.1.4"
+  },
+  "browser": {
+    "crypto": "crypto-browserify",
+    "stream": "stream-browserify",
+    "http": "stream-http",
+    "util": "util",
+    "buffer": "buffer",
+    "node:crypto": "crypto-browserify",
+    "node:stream": "stream-browserify",
+    "node:http": "stream-http",
+    "node:buffer": "buffer",
+    "node:util": "util"
+  }
+}

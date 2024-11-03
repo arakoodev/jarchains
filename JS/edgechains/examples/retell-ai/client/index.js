@@ -1,18 +1,13 @@
 import 'htmx.org';
 import { RetellWebClient } from "@arakoodev/edgechains.js/ai";
+import './style.css';
 
 // Create a single instance
 const retellWebClient = new RetellWebClient();
 
 async function startCall(access_token) {
     try {
-        // retellWebClient.on('error', async (error) => {
-        //     console.error('Retell error:', error);
-        //     await endCall();
-        //     document.getElementById('error').textContent = `Error: ${error.message}`;
-        // });
 
-        // Start the call
         const callResponse = await retellWebClient.startCall({
             accessToken: access_token,
         });

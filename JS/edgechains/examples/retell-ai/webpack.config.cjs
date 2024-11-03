@@ -1,13 +1,13 @@
-const path = require('path');
+const path = require('path')
 const webpack = require('webpack');
 
 module.exports = {
+  mode: 'development',
   entry: './client/index.js',
   output: {
-    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
   },
-  mode: 'production',
   resolve: {
     fallback: {
       "buffer": require.resolve("buffer/"),
@@ -22,5 +22,24 @@ module.exports = {
       process: 'process/browser.js',
       Buffer: ['buffer', 'Buffer'],
     }),
-  ]
-};
+  ],
+  devServer: {
+    static: {
+      directory: path.resolve(__dirname, 'dist'),
+    },
+    port: 3000,
+    open: true,
+    hot: true,
+    compress: true,
+    historyApiFallback: true,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        include: path.resolve(__dirname, 'client'),
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
+      },
+    ],
+  },
+}

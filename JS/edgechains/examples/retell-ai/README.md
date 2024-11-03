@@ -13,3 +13,19 @@ yarn build
 ```
 
 to bundle your application
+
+## How to use
+
+1. Install dependencies
+
+```
+npm install
+```
+
+2. Run the server
+
+```
+npm run start
+```
+
+>>>>>>> 100bddc3 (fixing-example)

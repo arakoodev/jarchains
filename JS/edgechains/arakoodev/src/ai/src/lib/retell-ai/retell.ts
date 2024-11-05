@@ -1,5 +1,5 @@
-import Retell from 'retell-sdk';
-import { AgentCreateParams, AgentResponse } from 'retell-sdk/resources/agent.mjs';
+import Retell from "retell-sdk";
+import { AgentCreateParams, AgentResponse } from "retell-sdk/resources/agent.mjs";
 import { LlmResponse, LlmCreateParams } from "retell-sdk/resources/llm.mjs";
 export class RetellAI {
     retellClient: Retell;
@@ -17,7 +17,7 @@ export class RetellAI {
         const keys = Object.keys(defaultParams);
         for (let i = 0; i < keys.length; i++) {
             if (keys[i] in body) {
-                delete defaultParams[keys[i]]
+                delete defaultParams[keys[i]];
             }
         }
         const agent = await this.retellClient.agent.create({ ...defaultParams, ...body }, options);
@@ -31,6 +31,6 @@ export class RetellAI {
 
     async initiateWebCall(agent_id: string): Promise<string> {
         const webCallResponse = await this.retellClient.call.createWebCall({ agent_id });
-        return webCallResponse.access_token
+        return webCallResponse.access_token;
     }
 }

@@ -8,10 +8,10 @@ interface GeminiAIConstructionOptions {
 
 type SafetyRating = {
     category:
-        | "HARM_CATEGORY_SEXUALLY_EXPLICIT"
-        | "HARM_CATEGORY_HATE_SPEECH"
-        | "HARM_CATEGORY_HARASSMENT"
-        | "HARM_CATEGORY_DANGEROUS_CONTENT";
+    | "HARM_CATEGORY_SEXUALLY_EXPLICIT"
+    | "HARM_CATEGORY_HATE_SPEECH"
+    | "HARM_CATEGORY_HARASSMENT"
+    | "HARM_CATEGORY_DANGEROUS_CONTENT";
     probability: "NEGLIGIBLE" | "LOW" | "MEDIUM" | "HIGH";
 };
 
@@ -49,6 +49,7 @@ interface GeminiAIChatOptions {
     max_output_tokens?: number;
     temperature?: number;
     prompt: string;
+    systemPrompt?:string
     max_retry?: number;
     responseType?: responseMimeType;
     delay?: number;
@@ -72,6 +73,14 @@ export class GeminiAI {
                     ],
                 },
             ],
+            "systemInstruction": {
+                "role": "user",
+                "parts": [
+                    {
+                        "text": chatOptions.systemPrompt || ""
+                    }
+                ]
+            }
         });
 
         let config = {

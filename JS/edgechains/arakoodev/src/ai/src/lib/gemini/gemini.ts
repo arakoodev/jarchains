@@ -43,6 +43,7 @@ type Response = {
 };
 
 type responseMimeType = "text/plain" | "application/json";
+type fileMimeType = "image/png" | "image/jpeg" | "image/webp" | "image/heic" | "image/heif";
 
 interface GeminiAIChatOptions {
     model?: string;
@@ -53,6 +54,12 @@ interface GeminiAIChatOptions {
     max_retry?: number;
     responseType?: responseMimeType;
     delay?: number;
+}
+interface GeminiAIFileChatOptions extends GeminiAIChatOptions{
+    file:{
+        uri:string,
+        mimeType:fileMimeType,
+    }
 }
 
 export class GeminiAI {
@@ -72,6 +79,54 @@ export class GeminiAI {
                         },
                     ],
                 },
+            ],
+            "systemInstruction": {
+                "role": "user",
+                "parts": [
+                    {
+                        "text": chatOptions.systemPrompt || ""
+                    }
+                ]
+            }
+        });
+
+        let config = {
+            method: "post",
+            maxBodyLength: Infinity,
+            url,
+            headers: {
+                "Content-Type": "application/json",
+                "x-goog-api-key": this.apiKey,
+            },
+            temperature: chatOptions.temperature || "0.7",
+            responseMimeType: chatOptions.responseType || "text/plain",
+            max_output_tokens: chatOptions.max_output_tokens || 1024,
+            data: data,
+        };
+        return await retry(
+            async () => {
+                return (await axios.request(config)).data;
+            },
+            { maxAttempts: chatOptions.max_retry || 3, delay: chatOptions.delay || 200 }
+        );
+    }
+    async chatWithImage(chatOptions: GeminiAIFileChatOptions): Promise<Response> {
+        let data = JSON.stringify({
+            contents: [
+                {
+                    role: "user",
+                    parts: [
+                      {
+                        fileData: {
+                          fileUri: chatOptions.file.uri,
+                          mimeType: chatOptions.file.mimeType
+                        }
+                      },
+                      {
+                        text: chatOptions.prompt 
+                      }
+                    ]
+                  }
             ],
             "systemInstruction": {
                 "role": "user",

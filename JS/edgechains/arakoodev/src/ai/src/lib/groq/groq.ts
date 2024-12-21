@@ -77,23 +77,46 @@ export class Groq {
     }
 
     async chat(chatOptions: GroqAIChatOptions): Promise<GroqResponse> {
-        const data = JSON.stringify({
-            messages: [
-                {
-                    role: "system",
-                    content: chatOptions.systemPrompt || ""
-                  },
-                {
-                    role: "user",
-                    content:chatOptions.prompt
+        let data:null | string =null;
+        if(chatOptions.responseType=="application/json"){
+            data = JSON.stringify({
+                messages: [
+                    {
+                        role: "system",
+                        content: chatOptions.systemPrompt || ""
+                      },
+                    {
+                        role: "user",
+                        content:chatOptions.prompt
+                    },
+                ],
+                model:chatOptions.model,
+                temperature:chatOptions.temperature||1,
+                max_tokens:chatOptions.max_output_tokens||1024,
+                top_p:chatOptions.top_p||1,
+                response_format: {
+                    type: "json_object"
                 },
-            ],
-            model:chatOptions.model,
-            temperature:chatOptions.temperature||1,
-            max_tokens:chatOptions.max_output_tokens||1024,
-            top_p:chatOptions.top_p||1,
-            
-        });
+            });
+        }else{
+            data = JSON.stringify({
+                messages: [
+                    {
+                        role: "system",
+                        content: chatOptions.systemPrompt || ""
+                      },
+                    {
+                        role: "user",
+                        content:chatOptions.prompt
+                    },
+                ],
+                model:chatOptions.model,
+                temperature:chatOptions.temperature||1,
+                max_tokens:chatOptions.max_output_tokens||1024,
+                top_p:chatOptions.top_p||1,
+            });
+        }   
+        
         const config = {
             method: "post",
             maxBodyLength: Infinity,

@@ -2,8 +2,8 @@
 all: build-cli
 
 add:
-	@echo "Adding wasm32-wasi target"
-	@rustup target add wasm32-wasi
+	@echo "Adding wasm32-wasip1 target"
+	@rustup target add wasm32-wasip1
 
 clean-rm: clean-shims
 	@rm -rf target/
@@ -24,7 +24,7 @@ build-cli: build-engine
 
 build-engine: build-shims
 	@echo "Building arakoo engine"
-	@cargo build -p arakoo-js-engine --target=wasm32-wasi -r
+	@cargo build -p arakoo-js-engine --target=wasm32-wasip1 -r
 
 build-shims: shims-install
 	@echo "Building shims"
